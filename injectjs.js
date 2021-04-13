@@ -3,7 +3,7 @@
 const ptrlength = Process.pointerSize;
 
 const frida_agent = "frida-agent.dll"
-const moudleInfos = Module.load(frida_agent)
+const moudleInfos = Process.getModuleByName(frida_agent)
 
 
 // https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-rtlzeromemory
@@ -11,7 +11,7 @@ const RtlZeroMemory = new NativeFunction(Module.getExportByName("ntdll.dll", "Rt
     "void", 
     ["pointer", "pointer"]);
 
-// https://docs.microsoft.com/zh-cn/windows/win32/api/memoryapi/nf-memoryapi-virtualprotect
+// https://docs.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualprotect
 const VirtualProtect = new NativeFunction(Module.getExportByName("kernel32.dll", "VirtualProtect"), 
     "bool", 
     ["pointer", "pointer", "uint32", "pointer"]);
