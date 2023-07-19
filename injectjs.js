@@ -190,6 +190,8 @@ function ShieldQuery() {
     });
 }
 
+
+/* Process.platform === "windows" */
 HideInLoadOrderLinks();
 HideInMemoryOrderLinks();
 HideInInitializationOrderLinks();
